@@ -1,7 +1,8 @@
+from main import row_num, column_num
 '''
 Check game-over:
 '''
-def check_game_over(row_pos, col_pos, mark, game_matrix, row_num, column_num):
+def check_game_over(row_pos, col_pos, mark, game_matrix):
     count_marks = {"count_ver": [1, []], "count_hor": [1, []],
                     "count_cross_up": [1, []], "count_cross_down": [1, []]}
 

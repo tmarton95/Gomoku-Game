@@ -14,17 +14,17 @@ class Layout():
         '''
         Labels on board:
         '''
-        self.label_score = Label(window, text = "Scores:", font = ('Verdana', 12), pady = 10)
-        self.label_score.grid(row = 0, column = 0, columnspan= 18, rowspan=2, sticky="w")
+        label_score = Label(window, text = "Scores:", font = ('Verdana', 12), pady = 10)
+        label_score.grid(row = 0, column = 0, columnspan= 18, rowspan=2, sticky="w")
 
-        self.label_p1 = Label(window, text = "Player 1:", font = ('Verdana', 10, 'bold'))
-        self.label_p1.grid(row = 0, column = 3, columnspan = 18, sticky='w')
+        label_p1 = Label(window, text = "Player 1:", font = ('Verdana', 10, 'bold'))
+        label_p1.grid(row = 0, column = 3, columnspan = 18, sticky='w')
+
+        label_p2 = Label(window, text = "Player 2:", font = ('Verdana', 10, 'bold'))
+        label_p2.grid(row = 0, column = 6, columnspan = 18, sticky='w')
 
         self.label_p1_score = Label(window, text = "0", font = ('Verdana', 14, 'bold'))
         self.label_p1_score.grid(row = 1, column = 3, columnspan = 18, sticky='w', padx = 22)
-
-        self.label_p2 = Label(window, text = "Player 2:", font = ('Verdana', 10, 'bold'))
-        self.label_p2.grid(row = 0, column = 6, columnspan = 18, sticky='w')
 
         self.label_p2_score = Label(window, text = "0", font = ('Verdana', 14, 'bold'))
         self.label_p2_score.grid(row = 1, column = 6, columnspan = 18, sticky='w', padx = 22)

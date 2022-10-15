@@ -1,11 +1,10 @@
 from tkinter import messagebox
 from tools import win_checks
 
-def clicked(button_info, BoardProperties, LayoutProperties):
-    button_name = button_info[0]
+def clicked(BoardProperties, LayoutProperties, button_name):
+    # Update table + turn:
     if button_name not in BoardProperties.clicked_buttons:
-        row_pos = button_info[1]
-        col_pos = button_info[2]
+        row_pos, col_pos = BoardProperties.button_dict[button_name][1]
         if BoardProperties.turn < 0:
             mark = "x"
             BoardProperties.button_dict[button_name][0].config(image = LayoutProperties.x_icon)
@@ -23,12 +22,12 @@ def clicked(button_info, BoardProperties, LayoutProperties):
         BoardProperties.clicked_buttons.append(button_name)
         BoardProperties.turn *= -1
 
-        [win_status, win_marks] = win_checks.check_game_over(row_pos, col_pos, mark, BoardProperties.game_matrix, 
-                                                                BoardProperties.row_num, BoardProperties.column_num)
+        # Check end of game:
+        win_status, win_marks = win_checks.check_game_over(row_pos, col_pos, mark, BoardProperties.game_matrix)
         if win_status:
             # de-activate buttons:
-            for name in BoardProperties.button_dict:
-                BoardProperties.button_dict[name][0].config(state = "disabled")
+            for button_name in BoardProperties.button_dict:
+                BoardProperties.button_dict[button_name][0].config(state = "disabled")
 
             # Get red color for winner:
             find_winners(BoardProperties, LayoutProperties, win_marks, mark)
@@ -38,7 +37,6 @@ def clicked(button_info, BoardProperties, LayoutProperties):
                 play_num = 1
                 BoardProperties.score_p1 += 1
                 LayoutProperties.label_p1_score.config(text = str(BoardProperties.score_p1))
-
             elif mark == "o":
                 play_num = 2
                 BoardProperties.score_p2 += 1
@@ -55,6 +53,6 @@ def find_winners(BoardProperties, LayoutProperties, win_marks, mark):
 
     for button_name in BoardProperties.button_dict:
         for win_coord in win_marks:
-            button_coord = BoardProperties.button_dict[button_name][1]
-            if button_coord[0] == win_coord[0] and button_coord[1] == win_coord[1]:
+            row_pos, col_pos= BoardProperties.button_dict[button_name][1]
+            if [row_pos, col_pos] == win_coord:
                 BoardProperties.button_dict[button_name][0].config(image = red_icon)
