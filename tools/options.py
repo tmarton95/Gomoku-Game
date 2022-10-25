@@ -8,7 +8,7 @@ def reset_scores(BoardProperties, LayoutProperties):
     LayoutProperties.label_p2_score.config(text = "0")
 
 ''' Open settings-window: '''
-def open_settings(window):
+def open_settings(window, BoardProperties, LayoutProperties, images_folder):
     WIDTH_win = 250
     HEIGHT_win = 200
     HEIGHT_button = 40
@@ -16,6 +16,8 @@ def open_settings(window):
     win_setting = Toplevel(window, height = HEIGHT_win - 4, width = WIDTH_win+5)
     win_setting.grab_set()
     win_setting.title("Settings")
+    window.call('wm', 'iconphoto', win_setting._w, PhotoImage(file = images_folder + '\\icon_settings.png'))
+
     canvas_colors = Canvas(win_setting, 
                             height = HEIGHT_win - HEIGHT_button, 
                             width = WIDTH_win/2, 
@@ -43,18 +45,19 @@ def open_settings(window):
     label_color.place(x = 4, y = 0)
 
     label_size = Label(canvas_size, 
-                        text = 'Board size', 
-                        font = ('Verdana', 9),
-                        relief = 'ridge',
-                        borderwidth = 1,
-                        bg = COLOR_bg,
-                        width = 15,
-                        height = 2)
+                            text = 'Board size', 
+                            font = ('Verdana', 9),
+                            relief = 'ridge',
+                            borderwidth = 1,
+                            bg = COLOR_bg,
+                            width = 15,
+                            height = 2)
     label_size.place(x = 4, y = 0)
 
     # Variables for radio-buttons:
     v_color = StringVar()
-    v_color.set('normal')
+    v_color.set(LayoutProperties.style_current)
+
     v_size = IntVar()
     v_size.set(20)
 
@@ -95,18 +98,18 @@ def open_settings(window):
                                         background = COLOR_bg)
     size_button_middle.place(x = 15, y = 120)
 
-    #size_button_small.select()
-
     # Apply props.:
     button_apply = Button(win_setting, 
-                            text = 'Apply settings', 
-                            font = ('Helvetica', 10, 'italic'), 
-                            width = 30, 
-                            bg = 'lightgreen',
-                            command = lambda: apply_properties(v_color, v_size))
+                text = 'Apply settings', 
+                font = ('Helvetica', 10, 'italic'), 
+                width = 30, 
+                bg = 'lightgreen',
+                command = lambda: apply_properties(window, BoardProperties, LayoutProperties, v_color, v_size))
 
     button_apply.place(x = 3, y = HEIGHT_win - HEIGHT_button + 6)
 
-def apply_properties(v_color, v_size):
-    print(v_color.get())
-    print(v_size.get())
+''' Apply settings: (and reset game!) '''
+def apply_properties(window, BoardProperties, LayoutProperties, v_color, v_size):
+    LayoutProperties.style_current = v_color.get()
+    LayoutProperties.change_style()
+    BoardProperties.new_game(LayoutProperties)

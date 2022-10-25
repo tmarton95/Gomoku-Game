@@ -24,12 +24,12 @@ def clicked(BoardProperties, LayoutProperties, button_name):
         BoardProperties.turn *= -1
 
         # Check end of game:
-        win_status, win_marks = win_checks.check_game_over(
-                                                            row_pos, 
+        win_status, win_marks = win_checks.check_game_over(row_pos, 
                                                             col_pos, 
                                                             mark, 
-                                                            BoardProperties.game_matrix
-                                                            )
+                                                            game_matrix = BoardProperties.game_matrix,
+                                                            row_num = LayoutProperties.row_num,
+                                                            column_num = LayoutProperties.row_num)
         if win_status:
             # de-activate buttons:
             for button_name in BoardProperties.button_dict:
