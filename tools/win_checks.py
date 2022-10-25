@@ -1,7 +1,6 @@
 from main import row_num, column_num
-'''
-Check game-over:
-'''
+
+''' Check game-over: '''
 def check_game_over(row_pos, col_pos, mark, game_matrix):
     count_marks = {"count_ver": [1, []], "count_hor": [1, []],
                     "count_cross_up": [1, []], "count_cross_down": [1, []]}
@@ -13,14 +12,14 @@ def check_game_over(row_pos, col_pos, mark, game_matrix):
         # + direction
         row = row_pos + i + 1
         col = col_pos
-        if (row_num > row >= 0 and column_num > col >= 0) and game_matrix[row][col] == mark:
+        if row_num > row >= 0 and column_num > col >= 0 and game_matrix[row][col] == mark:
             count_marks["count_ver"][0] += 1
             count_marks["count_ver"][1].append([row, col])
 
         # - direction:
         row = row_pos - (i+1)
         col = col_pos
-        if (row_num > row >= 0 and column_num > col >= 0) and game_matrix[row][col] == mark:
+        if row_num > row >= 0 and column_num > col >= 0 and game_matrix[row][col] == mark:
             count_marks["count_ver"][0] += 1
             count_marks["count_ver"][1].append([row, col])
         '''

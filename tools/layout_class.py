@@ -1,19 +1,18 @@
 from tkinter import*
 
-class Layout():
+class Layout:
     def __init__(self, window):
-        '''
-        Pictures for marks:
-        '''
+        ''' Pictures for marks: '''
         self.x_icon = PhotoImage(file = "icons\\x_icon.png")
         self.x_icon_red = PhotoImage(file = "icons\\x_icon_red.png")
         self.o_icon= PhotoImage(file = "icons\\o_icon.png")
         self.o_icon_red= PhotoImage(file = "icons\\o_icon_red.png")
         self.virtualPixel = PhotoImage(file = "icons\\virtual_pix.png")
+
+        self.x_icon_dark = PhotoImage(file = "icons\\x_icon_dark.png")
+        self.o_icon_dark= PhotoImage(file = "icons\\o_icon_dark.png")
         
-        '''
-        Labels on board:
-        '''
+        ''' Labels on board: '''
         label_score = Label(window, text = "Scores:", font = ('Verdana', 12), pady = 10)
         label_score.grid(row = 0, column = 0, columnspan= 18, rowspan=2, sticky="w")
 
@@ -34,4 +33,3 @@ class Layout():
 
         self.label_turn_image = Label(window, image = self.x_icon)
         self.label_turn_image.grid(row = 0, column = 11, columnspan = 18, rowspan=2, sticky='w', padx = 33)
-

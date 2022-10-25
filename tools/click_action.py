@@ -1,6 +1,7 @@
 from tkinter import messagebox
 from tools import win_checks
 
+''' Update gameboard after the click + start win-check:'''
 def clicked(BoardProperties, LayoutProperties, button_name):
     # Update table + turn:
     if button_name not in BoardProperties.clicked_buttons:
@@ -23,7 +24,12 @@ def clicked(BoardProperties, LayoutProperties, button_name):
         BoardProperties.turn *= -1
 
         # Check end of game:
-        win_status, win_marks = win_checks.check_game_over(row_pos, col_pos, mark, BoardProperties.game_matrix)
+        win_status, win_marks = win_checks.check_game_over(
+                                                            row_pos, 
+                                                            col_pos, 
+                                                            mark, 
+                                                            BoardProperties.game_matrix
+                                                            )
         if win_status:
             # de-activate buttons:
             for button_name in BoardProperties.button_dict:
@@ -44,7 +50,7 @@ def clicked(BoardProperties, LayoutProperties, button_name):
 
             messagebox.showinfo(title="GAME OVER", message = f"Player {play_num} win!")
 
-
+''' Collect and highlight the winner-marks:'''
 def find_winners(BoardProperties, LayoutProperties, win_marks, mark):
     if mark == "x":
         red_icon = LayoutProperties.x_icon_red
