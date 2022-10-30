@@ -29,7 +29,7 @@ def run_game():
                         command = lambda: open_settings(window, board_properties, layout_properties, images_folder))
     menu.add_cascade(label = 'File', menu = new_item)
     window.config(menu = menu)
-    #=====================================
+    #----------------
     window.mainloop()
 
 if __name__ == '__main__':

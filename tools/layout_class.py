@@ -32,7 +32,7 @@ class Layout:
         self.virtualPixel] = self.style_dict[self.style_current][0:4]
 
         self.button_pos = {10: {'column': 5, 'width': 12},
-                        15: {},
+                        15: {'column': 9, 'width': 14},
                         20: {'column': 14, 'width': 16}}
 
         ''' Labels + button on board: '''
@@ -71,10 +71,15 @@ class Layout:
             self.label_turn_image.grid_forget()
             
         elif self.size_current == 15:
-            pass
+            self.label_score.grid_forget()
+            self.label_p1.grid(row=0, column=0, sticky='w')
+            self.label_p2.grid(row=0, column=3, sticky='w')
+            self.label_p1_score.grid(row=1, column=0, sticky='w', padx=22)
+            self.label_p2_score.grid(row=1, column=3, sticky='w', padx=22)
+            self.label_turn.grid(row=0, column=5, columnspan=18, rowspan=2, sticky='w', padx=22)
+            self.label_turn_image.grid(row=0, column=8, columnspan=18, rowspan=2, sticky='w', padx=33)
         
         elif self.size_current == 20:
-            # Arrange normally labels+button:
             self.label_score.grid(row=0, column=0, columnspan=18, rowspan=2, sticky='w')
             self.label_p1.grid(row=0, column=3, columnspan=18, sticky='w')
             self.label_p2.grid(row=0, column=6, columnspan=18, sticky='w')
@@ -83,7 +88,6 @@ class Layout:
             self.label_turn.grid(row=0, column=8, columnspan=18, rowspan=2, sticky='w', padx=22)
             self.label_turn_image.grid(row=0, column=11, columnspan=18, rowspan=2, sticky='w', padx=33)
             
-    
     def change_style(self):
         [self.button_color, 
         self.x_icon, 
