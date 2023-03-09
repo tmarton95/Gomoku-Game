@@ -1,6 +1,5 @@
 from tkinter import*
-from tools import layout_class
-from tools import game_board_class
+from tools import layout_class, game_board_class
 from tools.options import reset_scores, open_settings
 
 images_folder = 'icons'
